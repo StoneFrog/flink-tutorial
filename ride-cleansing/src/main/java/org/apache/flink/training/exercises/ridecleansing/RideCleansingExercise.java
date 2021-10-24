@@ -6,7 +6,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
+ *GeoUtils.isInNYC(taxiRide.startLon, taxiRide.startLon) && GeoUtils.isInNYC(taxiRide.endLon, taxiRide.endLat)
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
@@ -24,6 +24,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.training.exercises.common.datatypes.TaxiRide;
 import org.apache.flink.training.exercises.common.sources.TaxiRideGenerator;
 import org.apache.flink.training.exercises.common.utils.ExerciseBase;
+import org.apache.flink.training.exercises.common.utils.GeoUtils;
 import org.apache.flink.training.exercises.common.utils.MissingSolutionException;
 
 /**
@@ -64,7 +65,7 @@ public class RideCleansingExercise extends ExerciseBase {
 
         @Override
         public boolean filter(TaxiRide taxiRide) throws Exception {
-            throw new MissingSolutionException();
+            return GeoUtils.isInNYC(taxiRide.startLon, taxiRide.startLat) && GeoUtils.isInNYC(taxiRide.endLon, taxiRide.endLat);
         }
     }
 }
